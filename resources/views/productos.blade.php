@@ -43,12 +43,7 @@
                                     </h2>
                                     <div class="price-box">
                                         <span class="product-price">
-                                            @if ($config->tipo_moneda == 'Soles')
-                                                S/.
-                                            @elseif($config->tipo_moneda == 'Dolares')
-                                                $
-                                            @endif
-                                            {{$item->precio_ahora}}</span>
+                                           $ {{$item->precio_ahora}}</span>
                                         <del>{{$item->precio_antes}}</del>
                                     </div><!-- End .price-box -->
                                     @if (auth::check())
@@ -175,7 +170,7 @@
                         </div><!-- End .collapse -->
                     </div><!-- End .widget -->
 
-                    <div class="widget">
+                    <!-- <div class="widget">
                         <h3 class="widget-title">
                             <a data-toggle="collapse" href="#widget-body-6" role="button" aria-expanded="true" aria-controls="widget-body-6">Color</a>
                         </h3>
@@ -208,9 +203,9 @@
                                         <a href="#" style="background-color: #7d5a3c;"></a>
                                     </li>
                                 </ul>
-                            </div><!-- End .widget-body -->
-                        </div><!-- End .collapse -->
-                    </div><!-- End .widget -->
+                            </div>
+                        </div>
+                    </div> -->
 
                     <div class="widget widget-featured">
                         <h3 class="widget-title">DE TU INTERÉS</h3>
@@ -237,12 +232,7 @@
                                             </div><!-- End .product-container -->
                                             <div class="price-box">
                                                 <span class="product-price">
-                                                    @if ($config->tipo_moneda == 'Soles')
-                                                        S/.
-                                                    @elseif($config->tipo_moneda == 'Dolares')
-                                                        $
-                                                    @endif
-                                                    {{$item->precio_ahora}}</span>
+                                                    ${{$item->precio_ahora}}</span>
                                             </div><!-- End .price-box -->
                                         </div><!-- End .product-details -->
                                     </div>

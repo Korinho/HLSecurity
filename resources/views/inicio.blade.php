@@ -75,7 +75,7 @@
                                 <div class="price-box">
                                     <span class="product-price">
                                         @if ($config->tipo_moneda == 'Soles')
-                                            S/.
+                                            $
                                         @elseif($config->tipo_moneda == 'Dolares')
                                             $
                                         @endif
@@ -126,12 +126,7 @@
                                         </div><!-- End .product-container -->
                                         <div class="price-box">
                                             <span class="product-price">
-                                                @if ($config->tipo_moneda == 'Soles')
-                                                S/.
-                                            @elseif($config->tipo_moneda == 'Dolares')
-                                                $
-                                            @endif
-                                            {{$item->precio_ahora}}</span>
+                                               $ {{$item->precio_ahora}}</span>
                                         <del>{{$item->precio_antes}}</del>
                                         </div><!-- End .price-box -->
                                     </div><!-- End .product-details -->
@@ -163,12 +158,7 @@
                                         </div><!-- End .product-container -->
                                         <div class="price-box">
                                             <span class="product-price">
-                                                @if ($config->tipo_moneda == 'Soles')
-                                                    S/.
-                                                @elseif($config->tipo_moneda == 'Dolares')
-                                                    $
-                                                @endif
-                                                {{$item->precio_ahora}}</span>
+                                               $ {{$item->precio_ahora}}</span>
                                         <del>{{$item->precio_antes}}</del>
                                         </div><!-- End .price-box -->
                                     </div><!-- End .product-details -->
@@ -202,12 +192,7 @@
                                         </div><!-- End .product-container -->
                                         <div class="price-box">
                                             <span class="product-price">
-                                                @if ($config->tipo_moneda == 'Soles')
-                                                    S/.
-                                                @elseif($config->tipo_moneda == 'Dolares')
-                                                    $
-                                                @endif
-                                                {{$item->precio_ahora}}</span>
+                                                $ {{$item->precio_ahora}}</span>
                                         <del>{{$item->precio_antes}}</del>
                                         </div><!-- End .price-box -->
                                     </div><!-- End .product-details -->
