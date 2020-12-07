@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>eCommerce - Tienda Online</title>
-        
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{asset('assets/images/icons/favicon.ico')}}">
-    
+
     <script type="text/javascript">
         WebFontConfig = {
             google: { families: [ 'Open+Sans:300,400,600,700,800','Poppins:300,400,500,600,700','Segoe Script:300,400,500,600,700' ] }
@@ -29,11 +29,11 @@
     <link rel="stylesheet" href="{{asset('assets/css/style.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/admin.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/fontawesome-free/css/all.min.css')}}">
-    
+
 </head>
 <body>
 
-    
+
     <?php
         if(auth::check()){
             $carrito = DB::table('carrito as c')
@@ -68,7 +68,7 @@
                                     <li><a href="{{route('contacto')}}">CONTACTO</a></li>
                                     @if (!auth::check())
                                         <li><a href="{{route('login.user')}}">INICIAR SESIÓN</a></li>
-                                        
+
                                     @else
                                         <li><a href="{{route('cuenta')}}">MI CUENTA </a></li>
                                         <li>
@@ -98,12 +98,12 @@
                             <a class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
                             {!! Form::open(array('url'=>'productos','method'=>'GET','autocomplete'=>'off','role'=>'search'))!!}
                                 <div class="header-search-wrapper">
-                                    
-                                    
+
+
                                     <input type="search" class="form-control" placeholder="Buscar producto" name="buscar"  required>
-                                    
-                                    
-                                    
+
+
+
                                     <button class="btn" type="submit" type="submit"><i class="icon-magnifier"></i></button>
                                 </div><!-- End .header-search-wrapper -->
                             {{Form::close()}}
@@ -125,11 +125,11 @@
                                 <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                     <span class="cart-count"><?php echo $num_compras?></span>
                                 </a>
-                                
+
                                 <div class="dropdown-menu" >
                                     <div class="dropdownmenu-wrapper">
                                         <div class="dropdown-cart-products">
-                                            
+
                                             @if (count($carrito)>0)
                                                 @foreach ($carrito as $item)
                                                     <div class="product">
@@ -150,11 +150,11 @@
                                                             </a>
                                                             <form action="{{route('quitar.carrito',$item->id)}}" method="POST" style="margin-bottom: 0px !important; cursor:pointer">
                                                                 @csrf
-                                                        
+
                                                                 <input name="_method" type="hidden" value="DELETE">
                                                                 <button type="submit" class="btn-remove"  title="Eliminar producto"><i class="icon-cancel"></i></button>
                                                             </form>
-                                                            
+
                                                         </figure>
                                                     </div><!-- End .product -->
                                                 @endforeach
@@ -166,17 +166,17 @@
                                                 </div>
                                             @endif
 
-                                            
+
                                         </div><!-- End .cart-product -->
 
-                                      
+
 
                                         <div class="dropdown-cart-action" style="margin-top:8px">
-                                            <a href="{{route('carrito')}}" class="btn">Carrito completo</a>   
+                                            <a href="{{route('carrito')}}" class="btn">Carrito completo</a>
                                         </div><!-- End .dropdown-cart-total -->
                                     </div><!-- End .dropdownmenu-wrapper -->
                                 </div><!-- End .dropdown-menu -->
-                                
+
                             </div><!-- End .dropdown -->
                        @endif
                     </div><!-- End .header-right -->
@@ -188,19 +188,17 @@
                     <nav class="main-nav">
                         <ul class="menu sf-arrows">
                             <li><a class="item-primary" href="{{route('inicio')}}">Inicio</a></li>
-                            <li><a class="item-primary" href="{{route('productos')}}">Productos</a></li>
-                            @if (auth::check())
+                          {{--   @if (auth::check())
                                 <li><a href="{{route('mis_compras')}}" class="item-primary">Mis compras</a></li>
-                            @endif
-                            <li>
-                                <?php 
-                                
+                            @endif --}}
+                            <?php
+
                                     $categorias = DB::table('categoria')
                                     ->orderby('titulo','asc')
                                     ->get();
-                                                                
+
                                 ?>
-                                <a href="category.html" class="sf-with-ul item-primary">Categories</a>
+                            {{-- <li><a href="category.html" class="sf-with-ul item-primary">Categories</a>
                                 <div class="megamenu megamenu-fixed-width">
                                     <div class="row">
                                         <div class="col-lg-8">
@@ -215,17 +213,20 @@
                                                         @endforeach
                                                     </ul>
                                                 </div><!-- End .col-lg-6 -->
-                                                
+
                                             </div><!-- End .row -->
                                         </div><!-- End .col-lg-8 -->
-                                        
+
                                     </div>
                                 </div><!-- End .megamenu -->
-                            </li>
-                           
-                                    
-                            
-                            
+                            </li> --}}
+                            @foreach ($categorias as $item)
+                                 <li><a class="item-primary" href="{{route('productos.categoria',strtolower($item->titulo))}}">{{$item->titulo}}</a></li>
+                            @endforeach
+
+
+
+
                         </ul>
                     </nav>
                 </div><!-- End .header-bottom -->
@@ -311,7 +312,7 @@
                                 <div class="col-md-7">
                                     <div class="widget">
                                         <h4 class="widget-title">Main Features</h4>
-                                        
+
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <ul class="links">
@@ -359,7 +360,7 @@
                     <li>
                         <a href="">Categorias</a>
                         <ul>
-            
+
                             @foreach ($categorias as $item)
                                 <li><a href="{{route('productos.categoria',strtolower($item->titulo))}}"><i class="{{$item->icono}}"></i> {{$item->titulo}}</a></li>
                             @endforeach
@@ -382,7 +383,7 @@
         </div><!-- End .mobile-menu-wrapper -->
     </div><!-- End .mobile-menu-container -->
 
-   
+
     <div class="modal fade" id="addCartModal" tabindex="-1" role="dialog" aria-labelledby="addCartModal" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -405,7 +406,7 @@
     <script src="{{asset('assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins.min.js')}}"></script>
-    
+
     <!-- Main JS File -->
     <script src="{{asset('assets/js/main.min.js')}}"></script>
     <script src="{{asset('assets/js/nouislider.min.js')}}"></script>

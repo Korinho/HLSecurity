@@ -42,6 +42,7 @@ Route::get('admin/venta/detalle/{codigo}','AdminController@detalle_venta')->name
 Route::patch('admin/venta/detalle/enviado/{id}','AdminController@aceptar_envio')->name('aceptar_envio.admin');
 Route::patch('admin/venta/detalle/datos/{id}','AdminController@update_datos')->name('update_datos.admin');
 Route::get('admin/mensajes','AdminController@mensajes')->name('mensajes');
+Route::get('admin/tecnicos', 'TecnicosController@index')->name('tecnicos');
 
 /*USUARIOS---------------------------------*/
 Route::get('sesion','InicioController@sesion_usuario')->name('login.user');

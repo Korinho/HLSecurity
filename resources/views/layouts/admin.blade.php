@@ -8,10 +8,9 @@
 	<meta name="description" content="Responsive Bootstrap 4 Admin &amp; Dashboard Template">
 	<meta name="author" content="Bootlab">
 
-	<?php 
-	
+	<?php
 	$config = DB::table('configuraciones')
-	->first();	
+	->first();
 	?>
 
 	<title>PANEL | {{$config->titulo}}</title>
@@ -30,7 +29,7 @@
 </head>
 
 <body>
-	
+
 
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar">
@@ -44,7 +43,7 @@
 				<div class="sidebar-user" style="background:#b0b0b0; color: white">
 					<img src="{{asset('config/'.$config->logo)}}" class="img-fluid  mb-2" alt="Linda Miller" style="width: 80%;"/>
 					<div class="font-weight-bold">{{auth()->user()->email}}</div>
-					<small>MODO ADMINISTRADOR</small>
+					<small>ADMINISTRADOR</small>
 				</div>
 
 				<ul class="sidebar-nav">
@@ -58,10 +57,10 @@
 
 						<ul id="dashboards" class="sidebar-dropdown list-unstyled collapse" data-parent="#sidebar">
 							<li class="sidebar-item"><a class="sidebar-link" href="{{route('dashboard')}}">Panel</a></li>
-							
+
 						</ul>
 					</li>
-					
+
 
 					<li class="sidebar-item {{ request()->is('admin/productos') ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('index.producto')}}">
@@ -87,8 +86,13 @@
 						<a class="sidebar-link" href="{{route('mensajes')}}">
 							<i class="align-middle mr-2 fas fa-fw fa-envelope"></i> <span class="align-middle">Mensajes</span>
 						</a>
+                    </li>
+                    <li class="sidebar-item {{ request()->is('admin/tecnicos') ? 'active' : '' }}" >
+						<a class="sidebar-link" href="{{route('tecnicos')}}">
+							<i class="align-middle mr-2 fas fa-fw fa-users"></i> <span class="align-middle">Tecnicos</span>
+						</a>
 					</li>
-					
+
 				</ul>
 			</div>
 		</nav>
@@ -113,7 +117,7 @@
             ],
             menubar: 'file edit view insert format tools table help',
             toolbar: 'casechange undo redo  bold italic underline strikethrough  fontselect fontsizeselect formatselect alignleft aligncenter alignright alignjustify outdent indent numlist bullist  forecolor backcolor removeformat pagebreak charmap emoticons fullscreen preview save print insertfile image media template link anchor codesample fullpage ltr rtl styleselect pageembed formatpainter',
-            
+
         });
 	</script>
 	<style>

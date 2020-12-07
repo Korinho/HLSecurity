@@ -48,20 +48,9 @@
 
                                 <div class="price-box">
                                     <span class="old-price">
-                                                 @if ($config->tipo_moneda == 'Soles')
-                                                    S/.
-                                                @elseif($config->tipo_moneda == 'Dolares')
-                                                    $
-                                                @endif
-                                        {{$producto->precio_antes}}</span>
+                                        ${{$producto->precio_antes}}</span>
                                     <span class="product-price">
-
-                                        @if ($config->tipo_moneda == 'Soles')
-                                            S/.
-                                        @elseif($config->tipo_moneda == 'Dolares')
-                                            $
-                                        @endif
-                                        {{$producto->precio_ahora}}</span>
+                                        ${{$producto->precio_ahora}}</span>
                                 </div><!-- End .price-box -->
 
                                 <div class="product-desc">
