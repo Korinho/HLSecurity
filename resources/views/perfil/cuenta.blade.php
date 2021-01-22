@@ -127,6 +127,7 @@
                     <ul class="list">
                         <li class="active"><a style="background-color: #eee;"><i class="icon icon-user"></i> Mi perfíl</a></li>
                         <li><a href="{{route('direccion')}}"><i class="icon icon-post"></i> Direcciones</a></li>
+                        <li><a href="{{route('tienda')}}"><i class="icon icon-post"></i> Mi Tienda</a></li>
                     
                     </ul>
                 </div><!-- End .widget -->

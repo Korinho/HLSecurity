@@ -78,6 +78,49 @@ class UsuarioController extends Controller
         return view('perfil.direccion',compact('paises','direcciones'));
     }
 
+    public function tienda(){
+        $usuario = User::findOrFail(auth()->user()->id);
+        return view('perfil.tienda',compact('usuario'));
+    }
+
+    public function editar_tienda(Request $request){
+
+
+        try{
+            $user = User::findOrFail(auth()->user()->id);
+
+            if($user->nombre_tienda != $request->nombre_tienda){
+                $validator = $request->validate([
+                    'logo'=>'max:3000',
+                    'nombre_tienda' => 'required|unique:users'
+                ]);
+            }else{
+                $validator = $request->validate([
+                    'logo'=>'max:3000'
+                ]);
+            }
+
+            if($request->logo){
+                $imageName1 = uniqid().'.'.$request->logo->extension();  
+                $request->logo->move(public_path('logos'), $imageName1);
+                $user->logoname = $imageName1;
+            }
+
+            if($request->nombre_tienda){
+                $user->nombre_tienda = $request->nombre_tienda;
+            }
+
+            $user->save();
+            return redirect()->back();
+
+         } catch (\Exception $e) {
+            dd($e);
+            Session::flash('danger', 'Hubo un error al completar el formulario');
+            return redirect()->back();
+        }
+    }  
+
+
     public function direccion_registro(Request $request){
         $validator = $request->validate([
             'direccion'=>'required|min:3| max: 400',

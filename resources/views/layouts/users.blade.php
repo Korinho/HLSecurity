@@ -89,7 +89,11 @@
                 <div class="container">
                     <div class="header-left">
                         <a href="{{route('inicio')}}" class="logo">
+                        @if (!isset($logo_tienda) or empty($logo_tienda))
                             <img src="{{asset('config/'.$config->logo)}}" alt="devctheme Logo" width="181" height="51">
+                        @else
+                            <img src="{{asset('logos/'.$logo_tienda)}}" alt="devctheme Logo" width="181" height="51">
+                        @endif
                         </a>
                     </div><!-- End .header-left -->
 

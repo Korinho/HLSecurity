@@ -51,6 +51,54 @@ class InicioController extends Controller
         return view('inicio',compact('best','newest','hot','mejor','reco','config'));
     }
 
+    public function vendedor($nombre_tienda){
+        
+         
+        $nombre_tienda = User::where('nombre_tienda',$nombre_tienda)->get();
+        if(!isset($nombre_tienda[0]) or $nombre_tienda[0]->nombre_tienda == ''){        
+            return redirect()->route('inicio');
+        }else{
+            $logo_tienda =  $nombre_tienda[0]->logoname;
+        }
+
+        try {
+            $best = DB::table('producto as p')
+            ->orderby('num_ventas','desc')
+            ->take(3)
+            ->get();
+
+            $newest = DB::table('producto')
+            ->orderby('id','desc')
+            ->take(4)
+            ->get();
+
+            $hot = DB::table('producto')
+            ->orderby('precio_ahora','asc')
+            ->take(3)
+            ->get();
+
+            $mejor = DB::table('producto')
+            ->orderby('precio_ahora','desc')
+            ->take(3)
+            ->get();
+
+            $reco = DB::table('producto')
+            ->orderby('titulo','asc')
+            ->take(3)
+            ->get();
+
+            $config = DB::table('configuraciones')
+            ->first();
+
+            $usuario = User::where('id',auth()->user()->id);
+
+        } catch (\Exception $e) {
+            //throw $th;
+        }
+
+        return view('inicio',compact('best','newest','hot','mejor','reco','config','logo_tienda'));
+    }
+
     public function sesion_usuario(){
    
         if (auth::check()) {

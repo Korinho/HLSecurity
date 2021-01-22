@@ -47,9 +47,12 @@ Route::get('admin/tecnicos', 'TecnicosController@index')->name('tecnicos');
 /*USUARIOS---------------------------------*/
 Route::get('sesion','InicioController@sesion_usuario')->name('login.user');
 Route::get('','InicioController@index')->name('inicio');
+Route::get('/{username}','InicioController@vendedor')->name('vendedor');
 Route::post('registro','InicioController@registro_rapido')->name('registro.rapido');
 Route::get('cuenta/perfil','UsuarioController@index')->name('cuenta');
 Route::patch('cuenta/perfil','UsuarioController@editar_perfil')->name('editar_perfil');
+Route::get('cuenta/tienda','UsuarioController@tienda')->name('tienda');
+Route::post('cuenta/tienda','UsuarioController@editar_tienda')->name('editar_tienda');
 Route::get('cuenta/direcciones','UsuarioController@direccion')->name('direccion');
 Route::post('cuenta/direcciones','UsuarioController@direccion_registro')->name('direccion_registro');
 Route::post('cuenta/direccion/{id}','UsuarioController@direccion_eliminar')->name('direccion_eliminar');
